@@ -16,11 +16,10 @@ clean:
 
 install:
 	install ./pcsensor $(DESTDIR)$(bindir)
+	cp 99-tempsensor.rules /etc/udev/rules.d
 
 uninstall:
 	rm -rf $(DESTDIR)$(bindir)/pcsensor
-
-rules-install:			# must be superuser to do this
-	cp 99-tempsensor.rules /etc/udev/rules.d
+	rm -rf /etc/udev/rules.d/99-tempsensor.rules
 
 .PHONY: all clean install uninstall

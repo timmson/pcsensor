@@ -17,7 +17,6 @@ git clone https://github.com/timmson/pcsensor.git
 #### Make
 ##### Requirements 
 * [usb.h](http://libusb.org/)
-* [json.h](https://github.com/json-c/json-c/wiki)
 
 ```
 cd pcsensor && autoconf && ./configure && make && sudo make install
