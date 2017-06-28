@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+SOURCES = pcsensor.c
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+
+all:    pcsensor
+
+CFLAGS = -O2 -Wall
+
+pcsensor:	$(SOURCES)
+	${CC} -DUNIT_TEST -o $@ $^ -lusb
+
+clean:		
+	rm -f pcsensor *.o
+
+install:
+	install ./pcsensor $(DESTDIR)$(bindir)
+
+uninstall:
+	rm -rf $(DESTDIR)$(bindir)/pcsensor
+
+rules-install:			# must be superuser to do this
+	cp 99-tempsensor.rules /etc/udev/rules.d
+
+.PHONY: all clean install uninstall
